@@ -1,0 +1,121 @@
+.login_main__container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 70% 30%;
+  grid-template-areas:
+    "about input"
+    "about message";
+}
+
+.login_about__container {
+  height: 100vh;
+  grid-area: about;
+  background-color: #0f2043;
+  color: white;
+  font-weight: 400;
+}
+
+.login_form__container {
+  background-color: #79cedc;
+  grid-area: input;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 15%;
+}
+
+.message__container {
+  grid-area: message;
+  background-color: #d5a458;
+}
+
+.login_input {
+  border: none;
+  transition: all 0.5s;
+  background-color: #79cedc;
+  border: 1px solid #79cedc;
+  outline: none;
+  margin: 2%;
+  font-size: 1.3vw;
+  color: white;
+  border-bottom: 2px solid white;
+}
+
+::placeholder {
+  font-size: 1.3vw;
+  color: white;
+}
+
+.login_input:focus {
+  border: 1px solid white;
+  background-color: white;
+  color: #79cedc;
+  border-bottom: 2px solid white;
+}
+
+.login_label {
+  font-size: 1.8vw;
+  color: white;
+  text-shadow: 1px 1px 0.5px black;
+}
+
+.message {
+  display: flex;
+  color: white;
+  text-shadow: 2px 2px 1px black;
+  font-weight: 900;
+  font-size: 2.6vw;
+  place-content: flex-start;
+  margin-top: 3%;
+  margin-left: 3%;
+}
+
+.login_button {
+  border: none;
+  background-color: #79cedc;
+  cursor: pointer;
+  color: white;
+  font-size: 2.2vw;
+  width: 40%;
+  margin-left: 30%;
+  padding: 2.5%;
+  text-shadow: 2px 2px 1px black;
+  transition: all 0.3s;
+}
+
+.login_button:hover {
+  background-color: white;
+  cursor: pointer;
+  color: #79cedc;
+  text-shadow: 2px 2px 1px black;
+}
+
+.registration_switch__container {
+  margin-top: 7.5%;
+  font-size: 1.5vw;
+  color: white;
+  text-shadow: 1px 1px 0.5px black;
+}
+
+.go_register_button {
+  position: relative;
+  right: 1.25%;
+  border: none;
+  background-color: #79cedc;
+  cursor: pointer;
+  font-size: 1.5vw;
+  color: white;
+  text-shadow: 1px 1px 0.5px black;
+}
+
+.go_register_button:hover {
+  text-decoration: underline;
+}
