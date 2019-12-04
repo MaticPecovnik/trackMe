@@ -4,13 +4,13 @@ import "./login.css";
 
 import LoginAbout from "./loginAbout";
 
-const Login = ({ setUsername, setLoggedIn }) => {
+const Login = ({ setUsername, setLoggedIn, setUserID }) => {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState(false);
   const [userMessage, setUserMessage] = useState("Welcome to the Track Me!");
 
-  const checkAuthentication = (username, password) => {
+  const checkAuthentication = () => {
     Axios.get("http://localhost:3000/api/user/getData", {
       params: {
         username: usernameInput,
@@ -27,6 +27,7 @@ const Login = ({ setUsername, setLoggedIn }) => {
         } else {
           setUsername(usernameInput);
           setLoggedIn(true);
+          setUserID(response.data.data[0].userID);
         }
         console.log(response);
       })
@@ -92,7 +93,7 @@ const Login = ({ setUsername, setLoggedIn }) => {
           ></input>
           <button
             className="login_button btn"
-            onClick={() => checkAuthentication(usernameInput, passwordInput)}
+            onClick={() => checkAuthentication()}
           >
             Login
           </button>

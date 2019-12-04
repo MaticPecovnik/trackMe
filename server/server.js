@@ -59,6 +59,8 @@ router.get("/user/getData", (req, res) => {
 router.post("/user/putData", (req, res) => {
   let user = new User();
 
+  // get the number of existing users
+
   const { _id, username, password, email } = req.body;
   console.log(req.body);
 
