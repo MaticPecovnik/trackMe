@@ -1,55 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./header.css";
 
-const Header = ({ username, setLoggedIn }) => {
-  const [isTop, setIsTop] = useState(true);
-
-  useEffect(() => {
-    document.addEventListener("scroll", () => {
-      setIsTop(window.scrollY < 200);
-    });
-  });
-
+const Header = ({ username, setLoggedIn, inFocus, setInFocus }) => {
   return (
     <div
       className="header__container"
-      style={
-        isTop
-          ? { backgroundColor: "#0f2043", color: "white" }
-          : { backgroundColor: "white", color: "#0f2043" }
-      }
+      style={{ backgroundColor: "#0f2043", color: "white" }}
     >
       <div className="username__container">
-        <h6>Welcome back, {username}!</h6>
+        <h5>Welcome back, {username}!</h5>
       </div>
       <div className="control__container">
         <button
           className="header_button btn"
-          style={
-            isTop
-              ? { backgroundColor: "#0f2043", color: "white" }
-              : { backgroundColor: "white", color: "#0f2043" }
+          style={{ backgroundColor: "#0f2043", color: "white" }}
+          onClick={() =>
+            setInFocus({ expenses: true, categories: false, previous: false })
           }
         >
-          <h6>Settings</h6>
+          <h6>Expenses</h6>
         </button>
         <button
           className="header_button btn"
-          style={
-            isTop
-              ? { backgroundColor: "#0f2043", color: "white" }
-              : { backgroundColor: "white", color: "#0f2043" }
+          style={{ backgroundColor: "#0f2043", color: "white" }}
+          onClick={() =>
+            setInFocus({ expenses: false, categories: true, previous: false })
           }
         >
-          <h6>About Us</h6>
+          <h6>Categories</h6>
         </button>
         <button
           className="header_button btn"
-          style={
-            isTop
-              ? { backgroundColor: "#0f2043", color: "white" }
-              : { backgroundColor: "white", color: "#0f2043" }
+          style={{ backgroundColor: "#0f2043", color: "white" }}
+          onClick={() =>
+            setInFocus({ expenses: false, categories: false, previous: true })
           }
+        >
+          <h6>History</h6>
+        </button>
+        <button
+          className="header_button btn"
+          style={{ backgroundColor: "#0f2043", color: "white" }}
           onClick={() => setLoggedIn(false)}
         >
           <h6>Log Out</h6>

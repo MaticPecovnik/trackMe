@@ -1,0 +1,38 @@
+.category_manager {
+  cursor: pointer;
+  border: none;
+  background-color: #0f2043;
+  color: white;
+  padding: 1em;
+  margin: 1em;
+  border: 2px solid white;
+}
+
+.addEvent__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-left: 2.5%;
+  border-top: 3px solid black;
+}
+
+.addEvent_color_input {
+  height: 3.5vh;
+  width: 29.5%;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.addEvent_form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.button__container {
+  width: 20%;
+}

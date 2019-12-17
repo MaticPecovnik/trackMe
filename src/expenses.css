@@ -1,0 +1,19 @@
+.expenses {
+  background-color: white;
+  overflow: auto;
+  height: 91vh;
+  width: 100vw;
+}
+
+.expense_list {
+  display: flex;
+  margin-left: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.month {
+  padding: 0.3em 0;
+}
