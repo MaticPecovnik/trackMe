@@ -24,19 +24,19 @@ const Header = ({ username, setLoggedIn, inFocus, setInFocus }) => {
           className="header_button btn"
           style={{ backgroundColor: "#0f2043", color: "white" }}
           onClick={() =>
-            setInFocus({ expenses: false, categories: true, previous: false })
+            setInFocus({ expenses: false, categories: false, previous: true })
           }
         >
-          <h6>Categories</h6>
+          <h6>History</h6>
         </button>
         <button
           className="header_button btn"
           style={{ backgroundColor: "#0f2043", color: "white" }}
           onClick={() =>
-            setInFocus({ expenses: false, categories: false, previous: true })
+            setInFocus({ expenses: false, categories: true, previous: false })
           }
         >
-          <h6>History</h6>
+          <h6>Categories</h6>
         </button>
         <button
           className="header_button btn"

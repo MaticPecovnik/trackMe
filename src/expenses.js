@@ -21,7 +21,7 @@ const months = [
 ];
 
 const thisMonth = new Date().getMonth();
-const thisYear = new Date().getFullYear();
+const thisYear = new Date().getUTCFullYear();
 
 const Expenses = ({
   userID,
@@ -41,13 +41,14 @@ const Expenses = ({
   };
 
   return (
-    <div className="expenses">
-      <div className="expense_list">
-        <h2 className="month">{months[thisMonth]}</h2>
+    <div className="expenses__container">
+      <div className="expense_list__container">
+        <h1 className="title_expenses">{months[thisMonth]}</h1>
         {expensesList.map((a, i) => {
           const expenseMonth = new Date(a.expenseDate).getMonth();
+          const expenseYear = new Date(a.expenseDate).getUTCFullYear();
 
-          if (expenseMonth === thisMonth) {
+          if (expenseMonth === thisMonth && expenseYear === thisYear) {
             return (
               <SingleExpense
                 expense={a}
@@ -73,6 +74,7 @@ const Expenses = ({
         ) : null}
       </div>
       <div className="summary__container">
+        <h1 className="title_expenses">Summary</h1>
         <Summary expensesList={expensesList} categoryList={categoryList} />
       </div>
     </div>

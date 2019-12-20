@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import summarizeExpenses from "./HelperFunctions/summarizeExpenses";
+import ColumnGraph from "./columnGraph";
+import "./summary.css";
 
 const thisMonth = new Date().getMonth();
 const thisYear = new Date().getFullYear();
@@ -12,43 +14,35 @@ const Summary = ({ expensesList, categoryList }) => {
 
   useEffect(() => {
     setSummarizedExpenses(
-      summarizeExpenses(expensesList, categoryList, {
-        year: thisYear,
-        month: thisMonth
+      summarizeExpenses({
+        expenses: expensesList,
+        categories: categoryList,
+        timeframe: {
+          year: thisYear,
+          month: thisMonth
+        }
       })
     );
   }, [categoryList, expensesList]);
   return (
     <React.Fragment>
       <div className="income__container">
-        <h4>Income sources</h4>
-        {summarizedExpenses.income.map((a, i) => {
-          return (
-            <div className="summary_category__container">
-              <div className="summary_category__name">
-                <h6>{a.category}</h6>
-              </div>
-              <div className="summary_category__value">
-                <h6>{a.categorySummary}</h6>
-              </div>
-            </div>
-          );
-        })}
+        <h3>Income sources</h3>
+        {summarizedExpenses.income.length > 0 ? (
+          <ColumnGraph
+            list={summarizedExpenses.income}
+            categoryList={categoryList}
+          />
+        ) : null}
       </div>
       <div className="expense__container">
-        <h4>Expensess</h4>
-        {summarizedExpenses.expense.map((a, i) => {
-          return (
-            <div className="summary_category__container">
-              <div className="summary_category__name">
-                <h6>{a.category}</h6>
-              </div>
-              <div className="summary_category__value">
-                <h6>{a.categorySummary}</h6>
-              </div>
-            </div>
-          );
-        })}
+        <h3>Expenses</h3>
+        {summarizedExpenses.expense.length > 0 ? (
+          <ColumnGraph
+            list={summarizedExpenses.expense}
+            categoryList={categoryList}
+          />
+        ) : null}
       </div>
     </React.Fragment>
   );

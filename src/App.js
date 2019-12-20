@@ -6,6 +6,7 @@ import Login from "./login";
 import Header from "./header";
 import Expenses from "./expenses";
 import Categories from "./categories";
+import ExpenseHistory from "./ExpenseHistory";
 
 const App = () => {
   const [updateApp, setUpdateApp] = useState(true);
@@ -15,9 +16,9 @@ const App = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [expensesList, setExpensesList] = useState([]);
   const [inFocus, setInFocus] = useState({
-    expenses: true,
+    expenses: false,
     categories: false,
-    previous: false
+    previous: true
   });
 
   /* On load get the categories of a user from the database */
@@ -77,6 +78,13 @@ const App = () => {
             categoryList={categoryList}
             updateApp={updateApp}
             setUpdateApp={setUpdateApp}
+          />
+        ) : null}
+        {inFocus.previous ? (
+          <ExpenseHistory
+            userID={userID}
+            categoryList={categoryList}
+            expensesList={expensesList}
           />
         ) : null}
       </div>

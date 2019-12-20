@@ -1,0 +1,43 @@
+.graph__container {
+  width: 95%;
+  margin-left: 2.5%;
+}
+
+.table__container {
+  width: 100%;
+}
+
+.table_row {
+  width: 100%;
+}
+
+.graph_category_name {
+  width: 20%;
+  text-align: start;
+  border-right: 1px solid black;
+}
+
+.graph_category_plot {
+  width: 60%;
+  text-align: center;
+}
+
+.graph_category_value {
+  width: 10%;
+  text-align: start;
+  border-left: 1px solid black;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+.graph_category_perc {
+  width: 10%;
+  text-align: start;
+  border-left: 1px solid black;
+}
+
+.graph_category_plot_bar {
+  height: 3vh;
+}
