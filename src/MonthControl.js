@@ -1,4 +1,5 @@
 import React from "react";
+import "./MonthControl.css";
 
 const months = [
   "January",
@@ -43,29 +44,29 @@ const MonthControl = ({
   };
 
   return (
-    <div className="month_control__container">
-      <div className="month_control_button__container back_btn">
+    <React.Fragment>
+      <div className="month_control_button__container">
         <button className="btn month_btn" onClick={handlePreviousMonth}>
-          Previous
+          <h4>Previous</h4>
         </button>
       </div>
       <div className="month_history">
         <h1 className="history_month">
           {months[expensesMonth]}, {expensesYear}
         </h1>
-        <div className="month_control_button__container forward_btn">
-          {expensesMonth === currentMonth && expensesYear === currentYear ? (
-            <button className="btn month_btn" disabled>
-              Next
-            </button>
-          ) : (
-            <button className="btn month_btn" onClick={handleNextMonth}>
-              Next
-            </button>
-          )}
-        </div>
       </div>
-    </div>
+      <div className="month_control_button__container">
+        {expensesMonth === currentMonth && expensesYear === currentYear ? (
+          <button className="btn month_btn" disabled>
+            <h4>Next</h4>
+          </button>
+        ) : (
+          <button className="btn month_btn" onClick={handleNextMonth}>
+            <h4>Next</h4>
+          </button>
+        )}
+      </div>
+    </React.Fragment>
   );
 };
 

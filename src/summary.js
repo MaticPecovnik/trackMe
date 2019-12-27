@@ -3,10 +3,7 @@ import summarizeExpenses from "./HelperFunctions/summarizeExpenses";
 import ColumnGraph from "./columnGraph";
 import "./summary.css";
 
-const thisMonth = new Date().getMonth();
-const thisYear = new Date().getFullYear();
-
-const Summary = ({ expensesList, categoryList }) => {
+const Summary = ({ expensesList, categoryList, summaryMonth, summaryYear }) => {
   const [summarizedExpenses, setSummarizedExpenses] = useState({
     expense: [],
     income: []
@@ -18,12 +15,12 @@ const Summary = ({ expensesList, categoryList }) => {
         expenses: expensesList,
         categories: categoryList,
         timeframe: {
-          year: thisYear,
-          month: thisMonth
+          year: summaryYear,
+          month: summaryMonth
         }
       })
     );
-  }, [categoryList, expensesList]);
+  }, [categoryList, expensesList, summaryMonth, summaryYear]);
   return (
     <React.Fragment>
       <div className="income__container">

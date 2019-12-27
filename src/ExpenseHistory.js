@@ -1,52 +1,29 @@
-import React, { useState, useEffect } from "react";
-import summarizeExpenses from "./HelperFunctions/summarizeExpenses";
+import React, { useState } from "react";
 import MonthControl from "./MonthControl";
 import SingleExpenseHistory from "./singleExpenseHistory";
-import HistoryMonthSummary from "./HistoryMonthSummary";
+import Summary from "./summary";
+import YearSummary from "./yearSummary";
+
+import "./ExpenseHistory.css";
 
 const today = new Date();
 
 const ExpenseHistory = ({ userID, categoryList, expensesList }) => {
-  const [expensesMonth, setExpensesMonth] = useState(today.getMonth() - 1);
+  const [expensesMonth, setExpensesMonth] = useState(today.getMonth());
   const [expensesYear, setExpensesYear] = useState(today.getUTCFullYear());
-  const [monthSummary, setMonthSummary] = useState([]);
-  const [yearSummary, setYearSummary] = useState([]);
-
-  // Calculate the summary for the current month
-  useEffect(() => {
-    if (expensesList.length > 0) {
-      setMonthSummary(
-        summarizeExpenses({
-          expenses: expensesList,
-          categories: [],
-          timeframe: { month: expensesMonth, year: expensesYear }
-        })
-      );
-    }
-  }, [expensesList, expensesMonth, expensesYear]);
-
-  // Calculate the summary for the current year
-  useEffect(() => {
-    if (expensesList.length > 0) {
-      setYearSummary(
-        summarizeExpenses({
-          expenses: expensesList,
-          categories: [],
-          timeframe: { month: undefined, year: expensesYear }
-        })
-      );
-    }
-  }, [expensesList, expensesYear]);
 
   return (
     <div className="history__container">
-      <div className="history_list__container">
+      <div className="month_control__container">
         <MonthControl
           expensesYear={expensesYear}
           setExpensesYear={setExpensesYear}
           expensesMonth={expensesMonth}
           setExpensesMonth={setExpensesMonth}
         />
+      </div>
+      <div className="history_list__container">
+        <h2 className="title_history_expenses">Expense List</h2>
         {expensesList.map((a, i) => {
           const expenseMonth = new Date(a.expenseDate).getMonth();
           const expenseYear = new Date(a.expenseDate).getUTCFullYear();
@@ -65,10 +42,22 @@ const ExpenseHistory = ({ userID, categoryList, expensesList }) => {
         })}
       </div>
       <div className="month_summary__container">
-        <HistoryMonthSummary monthSummary={monthSummary} />
+        <h2 className="title_history_expenses">Month Summary</h2>
+        <Summary
+          expensesList={expensesList}
+          categoryList={categoryList}
+          summaryMonth={expensesMonth}
+          summaryYear={expensesYear}
+        />
       </div>
       <div className="year_summary__container">
-        <HistoryMonthSummary yearSummary={yearSummary} />
+        <h2 className="title_history_expenses">Year Summary</h2>
+        <YearSummary
+          expensesList={expensesList}
+          categoryList={categoryList}
+          summaryMonth={undefined}
+          summaryYear={expensesYear}
+        />
       </div>
     </div>
   );

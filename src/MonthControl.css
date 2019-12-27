@@ -1,0 +1,27 @@
+.month_control_button__container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.month_btn {
+  padding: 0.8rem;
+  min-width: 7vw;
+  color: black;
+  background-color: white;
+  font-weight: 600;
+  transition: border 0.5s;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.month_btn:hover {
+  border: 1px solid black;
+}
+
+.month_btn:disabled {
+  border: 1px solid white;
+  background-color: rgb(218, 218, 218);
+}
+
+.history_month {
+  color: black;
+}

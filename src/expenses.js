@@ -75,7 +75,12 @@ const Expenses = ({
       </div>
       <div className="summary__container">
         <h1 className="title_expenses">Summary</h1>
-        <Summary expensesList={expensesList} categoryList={categoryList} />
+        <Summary
+          expensesList={expensesList}
+          categoryList={categoryList}
+          summaryMonth={thisMonth}
+          summaryYear={thisYear}
+        />
       </div>
     </div>
   );

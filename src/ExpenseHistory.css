@@ -1,0 +1,47 @@
+.history__container {
+  width: 95%;
+  margin-left: 2.5%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 12vh 53% auto;
+  grid-template-areas:
+    "control control"
+    "list month"
+    "year year";
+}
+
+.month_control__container {
+  width: 98%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
+  grid-area: control;
+  border-bottom: 2px solid #0f2043;
+  margin-bottom: 1rem;
+}
+
+.history_list__container {
+  grid-area: list;
+  width: 98%;
+  margin-left: 1%;
+  overflow-y: auto;
+}
+
+.month_summary__container {
+  grid-area: month;
+  width: 98%;
+  margin-left: 1%;
+}
+
+.year_summary__container {
+  grid-area: year;
+  width: 100%;
+}
+
+.title_history_expenses {
+  text-align: center;
+  padding: 0 0 0.5rem 0;
+}
