@@ -2,7 +2,7 @@ const summarizeExpenses = ({ expenses, categories, timeframe }) => {
   let { year, month } = timeframe;
 
   // if month is undefined we set an arbitrary month as it will be dynamically set anyway
-  let monthQuery = month || 1;
+  let monthQuery = month;
 
   let expense = [];
   let income = [];

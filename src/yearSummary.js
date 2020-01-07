@@ -19,16 +19,18 @@ const YearSummary = ({
   const [variationCategories, setVariationCategories] = useState([]);
 
   useEffect(() => {
-    setSummarizedExpenses(
-      summarizeExpenses({
-        expenses: expensesList,
-        categories: categoryList,
-        timeframe: {
-          year: summaryYear,
-          month: summaryMonth
-        }
-      })
-    );
+    if (expensesList.length > 0) {
+      setSummarizedExpenses(
+        summarizeExpenses({
+          expenses: expensesList,
+          categories: categoryList,
+          timeframe: {
+            year: summaryYear,
+            month: summaryMonth
+          }
+        })
+      );
+    }
   }, [categoryList, expensesList, summaryMonth, summaryYear]);
 
   useEffect(() => {

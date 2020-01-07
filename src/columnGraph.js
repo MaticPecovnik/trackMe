@@ -5,7 +5,7 @@ const ColumnGraph = ({ list, categoryList }) => {
   const totalSpent = list.reduce((sum, cat) => {
     return sum + cat.categorySummary;
   }, 0);
-  const listPlot = list.map((a, i) => {
+  const listPlot = list.map(a => {
     return {
       categoryName: a.category,
       categorySummaryAbs: a.categorySummary,

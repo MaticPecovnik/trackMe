@@ -10,17 +10,20 @@ const Summary = ({ expensesList, categoryList, summaryMonth, summaryYear }) => {
   });
 
   useEffect(() => {
-    setSummarizedExpenses(
-      summarizeExpenses({
-        expenses: expensesList,
-        categories: categoryList,
-        timeframe: {
-          year: summaryYear,
-          month: summaryMonth
-        }
-      })
-    );
+    if (expensesList.length > 0 && categoryList.length) {
+      setSummarizedExpenses(
+        summarizeExpenses({
+          expenses: expensesList,
+          categories: categoryList,
+          timeframe: {
+            year: summaryYear,
+            month: summaryMonth
+          }
+        })
+      );
+    }
   }, [categoryList, expensesList, summaryMonth, summaryYear]);
+
   return (
     <React.Fragment>
       <div className="income__container">
