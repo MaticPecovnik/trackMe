@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure
 // Mongoose schema for a user document used for registration and login
 const userSchema = new Schema({
-  _id: Number,
+  userID: { type: Number, index: true },
   username: String,
   password: String,
   email: String

@@ -41,26 +41,52 @@ app.use(logger("dev"));
 /* API that registers a new user, registers their category collection and registers their expense collection */
 
 router.post("/registration/newUser", (req, res) => {
-  let category = new Categories();
-  let user = new User();
-  let expenses = new Expenses();
+  let newUserCategory = new Categories();
+  let newUser = new User();
+  let newUserExpenses = new Expenses();
 
-  const { userID } = req.body;
-  category.userID = userID;
-  category.categories = [];
+  const { inputUsername, inputEmail, inputPassword } = req.body;
 
-  expenses.userID = userID;
-  expenses.expenses = [];
+  /* Lets first check if the user already exist, based upon a match on the email or username field */
 
-  category.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
+  User.find(
+    { $or: [{ username: inputUsername }, { email: inputEmail }] },
+    (err, data) => {
+      if (err) return res.json({ success: false, error: err });
 
-  expenses.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
+      if (data.length > 0) {
+        return res.json({ success: false, data: "User Already Exists" });
+      } else {
+        User.find((err, data) => {
+          if (err) return res.json({ success: false, error: err });
+          const userID = data.length || 0;
+
+          // Create a new entry for the user
+          newUserCategory.userID = userID;
+          newUserCategory.categories = [];
+          newUserCategory.save(err => {
+            if (err) return res.json({ success: false, error: err });
+          });
+
+          newUserExpenses.userID = userID;
+          newUserExpenses.expenses = [];
+          newUserExpenses.save(err => {
+            if (err) return res.json({ success: false, error: err });
+          });
+
+          newUser.userID = userID;
+          newUser.username = inputUsername;
+          newUser.password = inputPassword;
+          newUser.email = inputEmail;
+          newUser.save((err, data) => {
+            if (err) return res.json({ success: false, error: err });
+            console.log(data);
+            return res.json({ success: true, data: data });
+          });
+        });
+      }
+    }
+  );
 });
 
 /*************************************************************************************************************/
@@ -81,25 +107,6 @@ router.get("/user/getData", (req, res) => {
       return res.json({ success: true, data: data });
     });
   }
-});
-
-// POST request that registers a new user
-
-router.post("/user/putData", (req, res) => {
-  let user = new User();
-
-  // get the number of existing users
-
-  const { _id, username, password, email } = req.body;
-
-  user._id = _id;
-  user.username = username;
-  user.password = password;
-  user.email = email;
-  user.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
 });
 
 //**********************************************************************************************************//

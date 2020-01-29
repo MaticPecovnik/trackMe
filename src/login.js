@@ -4,7 +4,12 @@ import "./login.css";
 
 import LoginAbout from "./loginAbout";
 
-const Login = ({ setUsername, setLoggedIn, setUserID }) => {
+const Login = ({
+  setUsername,
+  setLoggedIn,
+  setUserID,
+  setStartScreenFocus
+}) => {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [error, setError] = useState(false);
@@ -26,10 +31,9 @@ const Login = ({ setUsername, setLoggedIn, setUserID }) => {
           setUserMessage("Something went wrong");
         } else {
           setUsername(usernameInput);
-          setLoggedIn(true);
           setUserID(response.data.data[0].userID);
+          setLoggedIn(true);
         }
-        console.log(response);
       })
       .catch(err => {
         console.log(err);
@@ -53,6 +57,7 @@ const Login = ({ setUsername, setLoggedIn, setUserID }) => {
           className="login_form"
           onSubmit={e => {
             e.preventDefault();
+            checkAuthentication();
           }}
         >
           <label htmlFor="username" className="login_label">
@@ -93,13 +98,27 @@ const Login = ({ setUsername, setLoggedIn, setUserID }) => {
           ></input>
           <button
             className="login_button btn"
-            onClick={() => checkAuthentication()}
+            onClick={e => {
+              e.preventDefault();
+              checkAuthentication();
+            }}
           >
             Login
           </button>
           <div className="registration_switch__container">
             Don`t have an account yet. Set it up{" "}
-            <button className="go_register_button">HERE!</button>
+            <button
+              className="go_register_button"
+              onClick={e => {
+                e.preventDefault();
+                setStartScreenFocus({
+                  login: false,
+                  register: true
+                });
+              }}
+            >
+              HERE!
+            </button>
           </div>
         </form>
       </div>

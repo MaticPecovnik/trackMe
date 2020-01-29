@@ -1,12 +1,6 @@
 .year_summary_history__container {
   width: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-.transaction_history__container {
-  width: 100%;
-  display: flex;
   flex-direction: row;
 }
 
@@ -36,56 +30,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.variation_history__container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-areas: "vary1 vary2 vary3";
-}
-
-.varing_expense_1__container {
-  width: 48%;
-  margin: 0 1% 0 1%;
-  background-image: linear-gradient(rgb(211, 211, 211), rgb(231, 231, 231));
-  box-shadow: -10px 0px 25px -10px rgba(66, 45, 45, 0.75),
-    10px 0px 25px -10px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
-  margin-bottom: 1rem;
-  padding: 1.5rem 0 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: vary1;
-}
-
-.varing_expense_2__container {
-  width: 48%;
-  margin: 0 1% 0 1%;
-  background-image: linear-gradient(rgb(211, 211, 211), rgb(231, 231, 231));
-  box-shadow: -10px 0px 25px -10px rgba(66, 45, 45, 0.75),
-    10px 0px 25px -10px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
-  margin-bottom: 1rem;
-  padding: 1.5rem 0 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: vary2;
-}
-
-.varing_expense_3__container {
-  width: 48%;
-  margin: 0 1% 0 1%;
-  background-image: linear-gradient(rgb(211, 211, 211), rgb(231, 231, 231));
-  box-shadow: -10px 0px 25px -10px rgba(66, 45, 45, 0.75),
-    10px 0px 25px -10px rgba(0, 0, 0, 0.75);
-  border: 1px solid black;
-  margin-bottom: 1rem;
-  padding: 1.5rem 0 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: vary3;
 }

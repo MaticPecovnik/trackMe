@@ -42,21 +42,8 @@ const Categories = ({ userID, categoryList, updateApp, setUpdateApp }) => {
           updateApp={updateApp}
         />
       </div>
-      <div className="categoryList_description">
-        <div className="description_focused description">
-          <CategoryManageDescription />
-        </div>
-      </div>
     </div>
   );
 };
 
 export default Categories;
-
-const CategoryManageDescription = () => {
-  return (
-    <div>
-      <h4>Lorem ipsum</h4>
-    </div>
-  );
-};

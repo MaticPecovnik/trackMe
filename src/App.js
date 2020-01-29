@@ -3,55 +3,60 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import "./App.css";
 import Login from "./login";
+import Register from "./Register";
 import Header from "./header";
 import Expenses from "./expenses";
 import Categories from "./categories";
 import ExpenseHistory from "./ExpenseHistory";
 
 const App = () => {
+  const [startScreenFocus, setStartScreenFocus] = useState({
+    login: false,
+    register: true
+  });
   const [updateApp, setUpdateApp] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [username, setUsername] = useState("guest");
-  const [userID, setUserID] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [userID, setUserID] = useState(null);
   const [categoryList, setCategoryList] = useState([]);
   const [expensesList, setExpensesList] = useState([]);
   const [inFocus, setInFocus] = useState({
-    expenses: false,
+    expenses: true,
     categories: false,
-    previous: true
+    previous: false
   });
 
   /* On load get the categories of a user from the database */
   useEffect(() => {
-    Axios.get("http://localhost:3000/api/categories/getUserCategories", {
-      params: {
-        userID
-      }
-    })
-      .then(response => {
-        setCategoryList(response.data.data[0].categories);
+    if (userID !== null) {
+      Axios.get("http://localhost:3000/api/categories/getUserCategories", {
+        params: {
+          userID: userID
+        }
       })
-      .catch(err => {
-        console.log(err);
-      });
-
-    Axios.get("http://localhost:3000/api/expenses/getUserExpenses", {
-      params: {
-        userID
-      }
-    })
-      .then(response => {
-        const sortedExpenses = response.data.data[0].expenses.sort((a, b) => {
-          return new Date(a.expenseDate) - new Date(b.expenseDate);
+        .then(response => {
+          setCategoryList(response.data.data[0].categories);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        setExpensesList(sortedExpenses);
+
+      Axios.get("http://localhost:3000/api/expenses/getUserExpenses", {
+        params: {
+          userID: userID
+        }
       })
-      .catch(err => {
-        console.log(err);
-      });
-    // eslint-disable-next
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [updateApp]);
+        .then(response => {
+          const sortedExpenses = response.data.data[0].expenses.sort((a, b) => {
+            return new Date(a.expenseDate) - new Date(b.expenseDate);
+          });
+          setExpensesList(sortedExpenses);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [updateApp, userID]);
 
   if (loggedIn) {
     return (
@@ -90,11 +95,19 @@ const App = () => {
       </div>
     );
   } else {
-    return (
+    return startScreenFocus.login ? (
       <Login
         setLoggedIn={setLoggedIn}
         setUsername={setUsername}
         setUserID={setUserID}
+        setStartScreenFocus={setStartScreenFocus}
+      />
+    ) : (
+      <Register
+        setStartScreenFocus={setStartScreenFocus}
+        setUserID={setUserID}
+        setLoggedIn={setLoggedIn}
+        setUsername={setUsername}
       />
     );
   }

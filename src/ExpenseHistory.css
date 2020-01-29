@@ -3,7 +3,7 @@
   margin-left: 2.5%;
   display: grid;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 12vh 53% auto;
+  grid-template-rows: 12vh auto auto;
   grid-template-areas:
     "control control"
     "list month"
